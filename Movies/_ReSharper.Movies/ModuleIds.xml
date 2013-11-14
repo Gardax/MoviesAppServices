@@ -1,0 +1,5 @@
+<Modules>
+  <Module PersistentId="F8CEAB8C-A28C-4CD2-BD63-A89F98AD3F05" ModuleId="Movies.Models" />
+  <Module PersistentId="E7479BDB-67F9-4666-BCFF-3743226A1123" ModuleId="Movies.Data" />
+  <Module PersistentId="481071C6-FBC4-4352-B8AB-080572115655" ModuleId="Movies.Services" />
+</Modules>

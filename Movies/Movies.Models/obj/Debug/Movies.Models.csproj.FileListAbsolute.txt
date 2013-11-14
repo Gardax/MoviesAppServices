@@ -1,0 +1,5 @@
+D:\Movies\Movies.Models\bin\Debug\Movies.Models.dll
+D:\Movies\Movies.Models\bin\Debug\Movies.Models.pdb
+D:\Movies\Movies.Models\obj\Debug\Movies.Models.csprojResolveAssemblyReference.cache
+D:\Movies\Movies.Models\obj\Debug\Movies.Models.dll
+D:\Movies\Movies.Models\obj\Debug\Movies.Models.pdb
