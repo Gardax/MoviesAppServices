@@ -1,26 +1,7 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="F8CEAB8C-A28C-4CD2-BD63-A89F98AD3F05/f:Comment.cs" caret="208" fromTop="9" />
-    <File id="F8CEAB8C-A28C-4CD2-BD63-A89F98AD3F05/f:Movie.cs" caret="378" fromTop="18" />
-    <File id="F8CEAB8C-A28C-4CD2-BD63-A89F98AD3F05/f:Category.cs" caret="328" fromTop="15" />
-    <File id="E7479BDB-67F9-4666-BCFF-3743226A1123/f:App.config" caret="884" fromTop="13" />
-    <File id="E7479BDB-67F9-4666-BCFF-3743226A1123/f:MoviesContext.cs" caret="553" fromTop="21" />
-    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Controllers/f:HomeController.cs" caret="0" fromTop="0" />
-    <File id="F8CEAB8C-A28C-4CD2-BD63-A89F98AD3F05/f:User.cs" caret="262" fromTop="12" />
-    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Models/f:UserModel.cs" caret="205" fromTop="9" />
-    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Models/f:LoggedUserModel.cs" caret="397" fromTop="13" />
-    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Controllers/f:UsersController.cs" caret="5234" fromTop="16" />
-    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Controllers/f:MoviesController.cs" caret="237" fromTop="10" />
+    <File id="481071C6-FBC4-4352-B8AB-080572115655/f:Web.config" caret="0" fromTop="0" />
+    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Controllers/f:UsersController.cs" caret="3431" fromTop="8" />
   </RecentFiles>
-  <RecentEdits>
-    <File id="F8CEAB8C-A28C-4CD2-BD63-A89F98AD3F05/f:Comment.cs" caret="208" fromTop="9" />
-    <File id="F8CEAB8C-A28C-4CD2-BD63-A89F98AD3F05/f:Movie.cs" caret="661" fromTop="26" />
-    <File id="F8CEAB8C-A28C-4CD2-BD63-A89F98AD3F05/f:Category.cs" caret="384" fromTop="17" />
-    <File id="E7479BDB-67F9-4666-BCFF-3743226A1123/f:MoviesContext.cs" caret="553" fromTop="21" />
-    <File id="E7479BDB-67F9-4666-BCFF-3743226A1123/f:App.config" caret="884" fromTop="13" />
-    <File id="F8CEAB8C-A28C-4CD2-BD63-A89F98AD3F05/f:User.cs" caret="262" fromTop="12" />
-    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Models/f:UserModel.cs" caret="205" fromTop="9" />
-    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Models/f:LoggedUserModel.cs" caret="395" fromTop="13" />
-    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Controllers/f:UsersController.cs" caret="5172" fromTop="26" />
-  </RecentEdits>
+  <RecentEdits />
 </RecentFiles>

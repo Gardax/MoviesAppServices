@@ -90,7 +90,7 @@ namespace Movies.Services.Controllers
                                             Description = movie.Description,
                                             CoverUrl = movie.CoverUrl,
                                             Rating = movie.Rating,
-                                            Categories = from category in movie.Categories
+                                            /*Categories = from category in movie.Categories
                                                          select new CategoryModel()
                                                                     {
                                                                         Name = category.Name
@@ -108,7 +108,7 @@ namespace Movies.Services.Controllers
                                                                            LastName = theUser.LastName,
                                                                            Username = theUser.Username
                                                                        }
-
+                                            */
                                         };
 
                 var response = this.Request.CreateResponse(HttpStatusCode.OK,
@@ -204,24 +204,24 @@ namespace Movies.Services.Controllers
                                  Description = movie.Description,
                                  CoverUrl = movie.CoverUrl,
                                  Rating = movie.Rating,
-                                 Categories = from theCategory in movie.Categories
+                                 /*Categories = from theCategory in movie.Categories
                                               select new CategoryModel()
                                               {
                                                   Name = theCategory.Name
-                                              },
+                                              },*/
                                  Comments = from comment in movie.Comments
                                             select new CommentModel()
                                             {
                                                 Text = comment.Text,
                                                 UserName = comment.UserName
-                                            },
+                                            },/*
                                  UsersWhoVoted = from theUser in movie.UsersWhoVoted
                                                  select new UserModel()
                                                  {
                                                      FirstName = theUser.FirstName,
                                                      LastName = theUser.LastName,
                                                      Username = theUser.Username
-                                                 }
+                                                 }*/
 
                              };
 
