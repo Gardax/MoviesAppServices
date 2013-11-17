@@ -17,9 +17,9 @@ namespace Movies.Models
 
         public double Rating { get; set; }
 
-        public virtual ICollection<User> UsersWhoVoted { get; set; }
+        public virtual ICollection<int> UsersWhoVoted { get; set; }
 
-        public virtual ICollection<User> WhachedBy { get; set; }
+        public virtual ICollection<int> WhachedBy { get; set; }
 
         public virtual ICollection<Category> Categories { get; set; } 
 
@@ -29,8 +29,8 @@ namespace Movies.Models
         {
             this.Comments=new HashSet<Comment>();
             this.Categories=new HashSet<Category>();
-            this.UsersWhoVoted=new HashSet<User>();
-           this.WhachedBy = new HashSet<User>();
+            this.UsersWhoVoted=new HashSet<int>();
+           this.WhachedBy = new HashSet<int>();
         }
     }
 }

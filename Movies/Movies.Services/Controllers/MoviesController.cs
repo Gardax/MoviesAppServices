@@ -72,9 +72,6 @@ namespace Movies.Services.Controllers
             try
             {
                 var context = new MoviesContext();
-
-                using (context)
-                {
                     var user = context.Users.FirstOrDefault(u => u.SessionKey == sessionKey);
                     if (user == null)
                     {
@@ -82,7 +79,7 @@ namespace Movies.Services.Controllers
                     }
 
                     page = (page - 1)*20;
-                    var moviesEntity = context.Movies.Where(m => !m.WhachedBy.Contains(user)).OrderByDescending(
+                    var moviesEntity = context.Movies.Where(m => !m.WhachedBy.Contains(user.Id)).OrderByDescending(
                         m => m.Rating)
                         .Skip(page).Take(20);
 
@@ -93,7 +90,7 @@ namespace Movies.Services.Controllers
                                                 Description = movie.Description,
                                                 CoverUrl = movie.CoverUrl,
                                                 Rating = movie.Rating,
-                                                /*Categories = from category in movie.Categories
+                                                Categories = from category in movie.Categories
                                                              select new CategoryModel()
                                                                         {
                                                                             Name = category.Name
@@ -104,20 +101,20 @@ namespace Movies.Services.Controllers
                                                                           Text = comment.Text,
                                                                           UserName = comment.UserName
                                                                       },
-                                                UsersWhoVoted = from theUser in movie.UsersWhoVoted
+                                                /*UsersWhoVoted = from theUser in movie.UsersWhoVoted
                                                                 select new UserModel()
                                                                            {
                                                                                FirstName = theUser.FirstName,
                                                                                LastName = theUser.LastName,
                                                                                Username = theUser.Username
-                                                                           }
-                                                */
+                                                                           }*/
+                                                
                                             };
 
                     var response = this.Request.CreateResponse(HttpStatusCode.OK,
                                                                movies);
                     return response;
-                }
+                
             }
             catch (Exception ex)
             {
@@ -141,7 +138,7 @@ namespace Movies.Services.Controllers
                 }
 
                 page = (page - 1) * 20;
-                var moviesEntity = context.Movies.Where(m => !m.WhachedBy.Contains(user))
+                var moviesEntity = context.Movies.Where(m => !m.WhachedBy.Contains(user.Id))
                     .Where(m=>m.Categories.Any(c=>c.Name==category))
                     .OrderByDescending(m => m.Rating).Skip(page).Take(20);
                 
@@ -163,13 +160,13 @@ namespace Movies.Services.Controllers
                                                 Text = comment.Text,
                                                 UserName = comment.UserName
                                             },
-                                 UsersWhoVoted = from theUser in movie.UsersWhoVoted
+                                 /*UsersWhoVoted = from theUser in movie.UsersWhoVoted
                                                  select new UserModel()
                                                  {
                                                      FirstName = theUser.FirstName,
                                                      LastName = theUser.LastName,
                                                      Username = theUser.Username
-                                                 }
+                                                 }*/
 
                              };
 
@@ -260,7 +257,7 @@ namespace Movies.Services.Controllers
                     throw new ArgumentException("Movie not found!");
                 }
 
-                movie.WhachedBy.Add(user);
+                movie.WhachedBy.Add(user.Id);
                 context.SaveChanges();
 
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
@@ -332,7 +329,7 @@ namespace Movies.Services.Controllers
                 {
                     throw  new ArgumentException("Invalid vote!");
                 }
-                if(movie.UsersWhoVoted.Contains(user))
+                if(movie.UsersWhoVoted.Contains(user.Id))
                 {
                     throw new Exception("You have voted for this movie!");
                 }
@@ -340,12 +337,12 @@ namespace Movies.Services.Controllers
                 if(movie.Rating==null || movie.Rating==0)
                 {
                     movie.Rating = vote;
-                    movie.UsersWhoVoted.Add(user);
+                    movie.UsersWhoVoted.Add(user.Id);
                 }
                 else
                 {
                     movie.Rating = (movie.Rating + vote)/2;
-                    movie.UsersWhoVoted.Add(user);
+                    movie.UsersWhoVoted.Add(user.Id);
                 }
 
                 context.SaveChanges();

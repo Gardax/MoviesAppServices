@@ -16,7 +16,7 @@ namespace Movies.Services.Models
 
         public double Rating { get; set; }
 
-        public IEnumerable<UserModel> UsersWhoVoted { get; set; }
+        public IEnumerable<int> UsersWhoVoted { get; set; }
 
         public IEnumerable<CategoryModel> Categories { get; set; }
 

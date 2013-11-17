@@ -1,7 +1,12 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="481071C6-FBC4-4352-B8AB-080572115655/f:Web.config" caret="0" fromTop="0" />
-    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Controllers/f:UsersController.cs" caret="3431" fromTop="8" />
+    <File id="481071C6-FBC4-4352-B8AB-080572115655/f:Web.config" caret="6882" fromTop="111" />
+    <File id="F8CEAB8C-A28C-4CD2-BD63-A89F98AD3F05/f:Movie.cs" caret="0" fromTop="0" />
+    <File id="F8CEAB8C-A28C-4CD2-BD63-A89F98AD3F05/f:User.cs" caret="0" fromTop="0" />
+    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Controllers/f:MoviesController.cs" caret="2600" fromTop="13" />
+    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Controllers/f:UsersController.cs" caret="3431" fromTop="53" />
   </RecentFiles>
-  <RecentEdits />
+  <RecentEdits>
+    <File id="481071C6-FBC4-4352-B8AB-080572115655/d:Controllers/f:MoviesController.cs" caret="5750" fromTop="21" />
+  </RecentEdits>
 </RecentFiles>
