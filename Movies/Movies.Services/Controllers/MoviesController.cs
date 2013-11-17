@@ -73,47 +73,51 @@ namespace Movies.Services.Controllers
             {
                 var context = new MoviesContext();
 
-                var user = context.Users.FirstOrDefault(u => u.SessionKey == sessionKey);
-                if (user == null)
+                using (context)
                 {
-                    throw new ArgumentException("Invalid authentication!");
+                    var user = context.Users.FirstOrDefault(u => u.SessionKey == sessionKey);
+                    if (user == null)
+                    {
+                        throw new ArgumentException("Invalid authentication!");
+                    }
+
+                    page = (page - 1)*20;
+                    var moviesEntity = context.Movies.Where(m => !m.WhachedBy.Contains(user)).OrderByDescending(
+                        m => m.Rating)
+                        .Skip(page).Take(20);
+
+                    var movies = from movie in moviesEntity
+                                 select new MovieModel()
+                                            {
+                                                Title = movie.Title,
+                                                Description = movie.Description,
+                                                CoverUrl = movie.CoverUrl,
+                                                Rating = movie.Rating,
+                                                /*Categories = from category in movie.Categories
+                                                             select new CategoryModel()
+                                                                        {
+                                                                            Name = category.Name
+                                                                        },
+                                                Comments = from comment in movie.Comments
+                                                           select new CommentModel()
+                                                                      {
+                                                                          Text = comment.Text,
+                                                                          UserName = comment.UserName
+                                                                      },
+                                                UsersWhoVoted = from theUser in movie.UsersWhoVoted
+                                                                select new UserModel()
+                                                                           {
+                                                                               FirstName = theUser.FirstName,
+                                                                               LastName = theUser.LastName,
+                                                                               Username = theUser.Username
+                                                                           }
+                                                */
+                                            };
+
+                    var response = this.Request.CreateResponse(HttpStatusCode.OK,
+                                                               movies);
+                    return response;
                 }
-
-                page = (page - 1)*20;
-                var moviesEntity = context.Movies.Where(m=>!m.WhachedBy.Contains(user)).OrderByDescending(m => m.Rating)
-                    .Skip(page).Take(20);
-
-                var movies = from movie in moviesEntity
-                             select new MovieModel()
-                                        {
-                                            Title = movie.Title,
-                                            Description = movie.Description,
-                                            CoverUrl = movie.CoverUrl,
-                                            Rating = movie.Rating,
-                                            /*Categories = from category in movie.Categories
-                                                         select new CategoryModel()
-                                                                    {
-                                                                        Name = category.Name
-                                                                    },
-                                            Comments = from comment in movie.Comments
-                                                       select new CommentModel()
-                                                                  {
-                                                                      Text = comment.Text,
-                                                                      UserName = comment.UserName
-                                                                  },
-                                            UsersWhoVoted = from theUser in movie.UsersWhoVoted
-                                                            select new UserModel()
-                                                                       {
-                                                                           FirstName = theUser.FirstName,
-                                                                           LastName = theUser.LastName,
-                                                                           Username = theUser.Username
-                                                                       }
-                                            */
-                                        };
-
-                var response = this.Request.CreateResponse(HttpStatusCode.OK,
-                                              movies);
-                return response;
             }
             catch (Exception ex)
             {
