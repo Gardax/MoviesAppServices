@@ -84,7 +84,7 @@ namespace Movies.Services.Controllers
                         .Skip(page).Take(20).ToList();
 
                     var movies = from movie in moviesEntity
-                                 select new MovieModel()
+                                 select new SimpleMovieModel()
                                             {
                                                 Id=movie.Id,
                                                 Title = movie.Title,
@@ -144,7 +144,7 @@ namespace Movies.Services.Controllers
                     .OrderByDescending(m => m.Rating).Skip(page).Take(20);
                 
                 var movies = from movie in moviesEntity
-                             select new MovieModel()
+                             select new SimpleMovieModel()
                              {
                                  Id = movie.Id,
                                  Title = movie.Title,

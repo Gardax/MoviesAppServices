@@ -176,6 +176,7 @@
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\LoggedUserModel.cs" />
     <Compile Include="Models\MovieModel.cs" />
+    <Compile Include="Models\SimpleMovieModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
