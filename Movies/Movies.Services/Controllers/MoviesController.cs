@@ -14,7 +14,7 @@ namespace Movies.Services.Controllers
     {
         [HttpPost]
         [ActionName("AddMovie")]
-        public HttpResponseMessage AddMovie(string sessionKey, MovieModel movie)
+        public HttpResponseMessage AddMovie(string sessionKey, AddMovieModel movie)
         {
             try
             {
