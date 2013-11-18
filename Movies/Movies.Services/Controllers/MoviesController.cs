@@ -86,8 +86,9 @@ namespace Movies.Services.Controllers
                     var movies = from movie in moviesEntity
                                  select new MovieModel()
                                             {
+                                                Id=movie.Id,
                                                 Title = movie.Title,
-                                                Description = movie.Description,
+                                                /*Description = movie.Description,
                                                 CoverUrl = movie.CoverUrl,
                                                 Rating = movie.Rating,
                                                 Categories = from category in movie.Categories
@@ -101,7 +102,7 @@ namespace Movies.Services.Controllers
                                                                           Text = comment.Text,
                                                                           UserName = comment.UserName
                                                                       },
-                                                /*UsersWhoVoted = from theUser in movie.UsersWhoVoted
+                                                UsersWhoVoted = from theUser in movie.UsersWhoVoted
                                                                 select new UserModel()
                                                                            {
                                                                                FirstName = theUser.FirstName,
@@ -145,8 +146,9 @@ namespace Movies.Services.Controllers
                 var movies = from movie in moviesEntity
                              select new MovieModel()
                              {
+                                 Id = movie.Id,
                                  Title = movie.Title,
-                                 Description = movie.Description,
+                                 /*Description = movie.Description,
                                  CoverUrl = movie.CoverUrl,
                                  Categories = from theCategory in movie.Categories
                                               select new CategoryModel()
@@ -159,7 +161,7 @@ namespace Movies.Services.Controllers
                                                 Text = comment.Text,
                                                 UserName = comment.UserName
                                             },
-                                 /*UsersWhoVoted = from theUser in movie.UsersWhoVoted
+                                 UsersWhoVoted = from theUser in movie.UsersWhoVoted
                                                  select new UserModel()
                                                  {
                                                      FirstName = theUser.FirstName,
