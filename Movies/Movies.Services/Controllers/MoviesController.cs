@@ -197,15 +197,14 @@ namespace Movies.Services.Controllers
                 }
 
 
-                var moviesEntity = context.Movies.Where(m => m.Id == id);
+                var moviesEntity = context.Movies.FirstOrDefault(m => m.Id == id);
 
-                var movies = from movie in moviesEntity
-                             select new MovieModel()
+                var movies = new MovieModel()
                              {
-                                 Title = movie.Title,
-                                 Description = movie.Description,
-                                 CoverUrl = movie.CoverUrl,
-                                 Rating = movie.Rating,
+                                 Title = moviesEntity.Title,
+                                 Description = moviesEntity.Description,
+                                 CoverUrl = moviesEntity.CoverUrl,
+                                 Rating = moviesEntity.Rating,
                                  /*Categories = from theCategory in movie.Categories
                                               select new CategoryModel()
                                               {
