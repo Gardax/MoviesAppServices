@@ -8,8 +8,6 @@ namespace Movies.Services.Models
 {
     public class MovieModel
     {
-        public int Id { get; set; }
-
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -17,12 +15,5 @@ namespace Movies.Services.Models
         public string CoverUrl { get; set; }
 
         public double Rating { get; set; }
-
-        public IEnumerable<Vote> Votes { get; set; }
-
-        public IEnumerable<CategoryModel> Categories { get; set; }
-
-        public IEnumerable<CommentModel> Comments { get; set; }
- 
     }
 }

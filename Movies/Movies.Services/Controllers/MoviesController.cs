@@ -210,13 +210,13 @@ namespace Movies.Services.Controllers
                                               select new CategoryModel()
                                               {
                                                   Name = theCategory.Name
-                                              },*/
+                                              },
                                  Comments = from comment in movie.Comments
                                             select new CommentModel()
                                             {
                                                 Text = comment.Text,
                                                 UserName = comment.UserName
-                                            },/*
+                                            },
                                  UsersWhoVoted = from theUser in movie.UsersWhoVoted
                                                  select new UserModel()
                                                  {
