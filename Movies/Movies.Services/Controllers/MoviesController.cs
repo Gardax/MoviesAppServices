@@ -79,9 +79,9 @@ namespace Movies.Services.Controllers
                     }
 
                     page = (page - 1)*20;
-                    var moviesEntity = context.Movies.Where(m => !m.WhachedBy.Contains(user.Id)).OrderByDescending(
+                    var moviesEntity = context.Movies.Where(m=>m.WhachedBy.All(w=>w.User.Id!=user.Id)).OrderByDescending(
                         m => m.Rating)
-                        .Skip(page).Take(20);
+                        .Skip(page).Take(20).ToList();
 
                     var movies = from movie in moviesEntity
                                  select new MovieModel()
@@ -138,7 +138,7 @@ namespace Movies.Services.Controllers
                 }
 
                 page = (page - 1) * 20;
-                var moviesEntity = context.Movies.Where(m => !m.WhachedBy.Contains(user.Id))
+                var moviesEntity = context.Movies.Where(m=>m.WhachedBy.All(w=>w.User.Id!=user.Id))
                     .Where(m=>m.Categories.Any(c=>c.Name==category))
                     .OrderByDescending(m => m.Rating).Skip(page).Take(20);
                 
@@ -148,7 +148,6 @@ namespace Movies.Services.Controllers
                                  Title = movie.Title,
                                  Description = movie.Description,
                                  CoverUrl = movie.CoverUrl,
-                                 Rating = movie.Rating,
                                  Categories = from theCategory in movie.Categories
                                               select new CategoryModel()
                                               {
@@ -257,7 +256,11 @@ namespace Movies.Services.Controllers
                     throw new ArgumentException("Movie not found!");
                 }
 
-                movie.WhachedBy.Add(user.Id);
+                movie.WhachedBy.Add(new Watches()
+                                        {
+                                            Movie = movie,
+                                            User = user
+                                        });
                 context.SaveChanges();
 
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
@@ -329,7 +332,7 @@ namespace Movies.Services.Controllers
                 {
                     throw  new ArgumentException("Invalid vote!");
                 }
-                if(movie.UsersWhoVoted.Contains(user.Id))
+                if(movie.Votes.Any(v=>v.User.Id==user.Id))
                 {
                     throw new Exception("You have voted for this movie!");
                 }
@@ -337,12 +340,22 @@ namespace Movies.Services.Controllers
                 if(movie.Rating==null || movie.Rating==0)
                 {
                     movie.Rating = vote;
-                    movie.UsersWhoVoted.Add(user.Id);
+                    movie.Votes.Add(new Vote()
+                                        {
+                                            Movie = movie,
+                                            User = user,
+                                            Rate = vote
+                                        });
                 }
                 else
                 {
                     movie.Rating = (movie.Rating + vote)/2;
-                    movie.UsersWhoVoted.Add(user.Id);
+                    movie.Votes.Add(new Vote()
+                    {
+                        Movie = movie,
+                        User = user,
+                        Rate = vote
+                    });
                 }
 
                 context.SaveChanges();
