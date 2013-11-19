@@ -333,7 +333,7 @@ namespace Movies.Services.Controllers
                 {
                     throw  new ArgumentException("Invalid vote!");
                 }
-                if(movie.Votes.Any(v=>v.User.Id==user.Id))
+                if(movie.Votes.Any(v=>v.User.Id==user.Id && v.Movie.Id==movieId))
                 {
                     throw new Exception("You have voted for this movie!");
                 }
