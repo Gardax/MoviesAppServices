@@ -139,7 +139,7 @@ namespace Movies.Services.Controllers
                 }
 
                 page = (page - 1) * 20;
-                var moviesEntity = context.Movies.Where(m => m.WhachedBy.All(w => w.User.Id == user.Id)).OrderByDescending(
+                var moviesEntity = context.Movies.Where(m => m.WhachedBy.Any(w => w.User.Id == user.Id)).OrderByDescending(
                     m => m.Rating)
                     .Skip(page).Take(20).ToList();
 
