@@ -126,6 +126,66 @@ namespace Movies.Services.Controllers
         }
 
         [HttpGet]
+        [ActionName("GetWatchedMovies")]
+        public HttpResponseMessage GetWatchedMovies(string sessionKey, int page = 1)
+        {
+            try
+            {
+                var context = new MoviesContext();
+                var user = context.Users.FirstOrDefault(u => u.SessionKey == sessionKey);
+                if (user == null)
+                {
+                    throw new ArgumentException("Invalid authentication!");
+                }
+
+                page = (page - 1) * 20;
+                var moviesEntity = context.Movies.Where(m => m.WhachedBy.All(w => w.User.Id == user.Id)).OrderByDescending(
+                    m => m.Rating)
+                    .Skip(page).Take(20).ToList();
+
+                var movies = from movie in moviesEntity
+                             select new SimpleMovieModel()
+                             {
+                                 Id = movie.Id,
+                                 Title = movie.Title,
+                                 /*Description = movie.Description,
+                                 CoverUrl = movie.CoverUrl,
+                                 Rating = movie.Rating,
+                                 Categories = from category in movie.Categories
+                                              select new CategoryModel()
+                                                         {
+                                                             Name = category.Name
+                                                         },
+                                 Comments = from comment in movie.Comments
+                                            select new CommentModel()
+                                                       {
+                                                           Text = comment.Text,
+                                                           UserName = comment.UserName
+                                                       },
+                                 UsersWhoVoted = from theUser in movie.UsersWhoVoted
+                                                 select new UserModel()
+                                                            {
+                                                                FirstName = theUser.FirstName,
+                                                                LastName = theUser.LastName,
+                                                                Username = theUser.Username
+                                                            }*/
+
+                             };
+
+                var response = this.Request.CreateResponse(HttpStatusCode.OK,
+                                                           movies);
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                var response = this.Request.CreateResponse(HttpStatusCode.BadRequest,
+                                             ex.Message);
+                return response;
+            }
+        }
+
+        [HttpGet]
         [ActionName("GetTopMoviesByCategory")]
         public HttpResponseMessage GetTopMoviesByCategory(string sessionKey, string category, int page = 1)
         {
@@ -255,6 +315,12 @@ namespace Movies.Services.Controllers
                 if(movie==null)
                 {
                     throw new ArgumentException("Movie not found!");
+                }
+
+                var watched = context.Watches.FirstOrDefault(w => w.Movie.Id == movieId && w.User.Id == user.Id);
+                if(watched!=null)
+                {
+                    throw new Exception("You have already added this movie to watched!");
                 }
 
                 movie.WhachedBy.Add(new Watches()
