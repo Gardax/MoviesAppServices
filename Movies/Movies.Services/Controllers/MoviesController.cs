@@ -313,7 +313,7 @@ namespace Movies.Services.Controllers
 
         [HttpGet]
         [ActionName("Vote")]
-        public HttpResponseMessage Vote(string sessionKey, string movieTitle, int vote)
+        public HttpResponseMessage Vote(string sessionKey, int movieId, int vote)
         {
             try
             {
@@ -323,7 +323,7 @@ namespace Movies.Services.Controllers
                 {
                     throw new ArgumentException("Invalid authentication!");
                 }
-                var movie = context.Movies.FirstOrDefault(m => m.Title == movieTitle);
+                var movie = context.Movies.FirstOrDefault(m => m.Id == movieId);
                 if (movie == null)
                 {
                     throw new ArgumentException("Movie not found!");
